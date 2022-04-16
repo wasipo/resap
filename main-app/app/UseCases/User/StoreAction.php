@@ -25,7 +25,9 @@ class StoreAction
         $realName = $loginActionValue->getRealName();
 
 
-
+        return [
+            'create' => true
+        ];
     }
 
 }
