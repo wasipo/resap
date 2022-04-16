@@ -4,7 +4,7 @@ namespace App\Presentations\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Presentations\Requests\LoginActionValueRequest;
-use App\UseCases\LoginAction;
+use App\UseCases\Auth\LoginAction;
 
 class AuthController extends Controller
 {
