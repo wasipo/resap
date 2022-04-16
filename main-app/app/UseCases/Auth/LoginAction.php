@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\UseCases;
+namespace App\UseCases\Auth;
 
 use App\Domains\Logins\LoginId;
 use App\Domains\Shared\MailAddress;
 use App\Presentations\Requests\LoginActionValueInterface;
+use Illuminate\Support\Facades\Auth;
 
 class LoginAction
 {
@@ -21,8 +22,22 @@ class LoginAction
         $loginId =  new LoginId($loginActionValue->getLoginId());
         $mailAddress = new MailAddress($loginActionValue->getMailAddress());
         $password = $loginActionValue->getPassword();
-        var_dump($loginId->getLoginId(),$mailAddress->getMailAddress(),$password);
-        return [];
+
+        // TODO: mailAddressの場合は対応するユーザIDを引き当てる？
+        $auth = Auth::attempt([
+            $loginId->getLoginId(),
+            $password,
+        ]);
+
+        $user =['login' => false];
+        if($auth) {
+            $user = Auth::user();
+            $user['login'] = true;
+        }
+
+        return [
+                $user
+        ];
     }
 
 }
