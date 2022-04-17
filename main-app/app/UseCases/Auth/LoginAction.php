@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\UseCases\Auth;
 
-use App\Domains\Logins\LoginId;
+use App\Domains\Auths\LoginId;
 use App\Domains\Shared\MailAddress;
 use App\Presentations\Requests\LoginActionValueInterface;
 use Illuminate\Support\Facades\Auth;

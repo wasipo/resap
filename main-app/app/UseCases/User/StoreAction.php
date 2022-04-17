@@ -4,26 +4,29 @@ declare(strict_types=1);
 
 namespace App\UseCases\User;
 
-use App\Domains\Logins\LoginId;
+use App\Domains\Auths\LoginId;
 use App\Domains\Shared\MailAddress;
+use App\Domains\Users\User;
+use App\Domains\Users\UserId;
 use App\Presentations\Requests\UserActionValueInterface;
 
 class StoreAction
 {
 
-    public function __construct(
-    )
+    public function __construct()
     {
     }
 
     public function __invoke(UserActionValueInterface $loginActionValue): array
     {
-        $loginId =  new LoginId($loginActionValue->getLoginId());
-        $mailAddress = new MailAddress($loginActionValue->getEmailAddress());
-        $password = $loginActionValue->getPassword();
-        $realFamilyName = $loginActionValue->getRealFamilyName();
-        $realName = $loginActionValue->getRealName();
 
+        new User(
+            new UserId(),
+            new LoginId($loginActionValue->getLoginId()),
+            $loginActionValue->getPassword(),
+            $loginActionValue->getRealFamilyName(),
+            $loginActionValue->getRealName(),
+            new MailAddress($loginActionValue->getEmailAddress()));
 
         return [
             'create' => true

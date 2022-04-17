@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\Logins;
+namespace App\Domains\Auths;
 
 use App\Domains\Shared\Uuid\Uuid;
 
