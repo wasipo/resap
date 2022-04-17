@@ -10,13 +10,9 @@ use App\Models\User as UserModel;
 class UserRepository implements UserRepositoryInterface
 {
 
-
-
-    public function save(User $user): bool
+    public function save(User $user): User
     {
-
-        /** @var UserModel $update */
-        $update = UserModel::updateOrCreate(
+        $userModel = UserModel::updateOrCreate(
             [
                 $user->getId()
             ]
@@ -28,11 +24,15 @@ class UserRepository implements UserRepositoryInterface
                 $user->getRealName(),
                 $user->getMailAddress()
             ]
-        )->wasRecentlyCreated();
+        );
 
-        if($update) {
-            return true;
-        }
-        return false;
+        return new User(
+            $userModel->id,
+            $userModel->login_id,
+            $userModel->password,
+            $userModel->real_family_name,
+            $userModel->real_name,
+            $userModel->mail_address
+        );
     }
 }
