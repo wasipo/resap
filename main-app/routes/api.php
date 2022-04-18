@@ -1,6 +1,7 @@
 <?php
 
 use App\Presentations\Controllers\AuthController;
+use App\Presentations\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/v1')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
+    Route::post('createUser',[UserController::class,'createUser']);
 });
