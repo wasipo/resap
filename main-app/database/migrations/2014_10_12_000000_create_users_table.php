@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('real_family_name')->nullable();
             $table->string('real_name')->nullable();
-            $table->string('mail_address')->unique();
+            $table->string('mail_address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->softDeletes();
