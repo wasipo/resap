@@ -18,6 +18,7 @@ class UserActionValueRequest extends BaseRequest implements UserActionValueInter
             'loginId' => [
                 'required',
                 'string',
+                'unique:users,login_id',
                 'max:255'
             ],
             'emailAddress' => [
@@ -26,12 +27,12 @@ class UserActionValueRequest extends BaseRequest implements UserActionValueInter
                 'max:255'
             ],
             'realFamilyName' => [
-               'required',
+               'nullable',
                 'string',
                 'max:255'
             ],
             'realName' => [
-                'required',
+                'nullable',
                 'string',
                 'max:255'
             ],
@@ -74,8 +75,8 @@ class UserActionValueRequest extends BaseRequest implements UserActionValueInter
         return $this->input('realName');
     }
 
-    public function getEmailAddress(): string|null
+    public function getMailAddress(): string|null
     {
-        return $this->input('password');
+        return $this->input('mailAddress');
     }
 }
