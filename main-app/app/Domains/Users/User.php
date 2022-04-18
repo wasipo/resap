@@ -11,9 +11,9 @@ class User
     public function __construct(
         private UserId      $id,
         private LoginId     $loginId,
-        private string|null $password = null,
-        private string|null $realFamilyName = null,
-        private string|null $realName = null,
+        private string|null $password,
+        private string|null $realFamilyName,
+        private string|null $realName,
         private MailAddress $mailAddress
     )
     {
@@ -21,19 +21,19 @@ class User
     }
 
     /**
-     * @return UserId
+     * @return string
      */
-    public function getId(): UserId
+    public function getId(): string
     {
-        return $this->id;
+        return $this->id->getUserID();
     }
 
     /**
-     * @return LoginId
+     * @return string|null
      */
-    public function getLoginId(): LoginId
+    public function getLoginId(): ?string
     {
-        return $this->loginId;
+        return $this->loginId->getLoginId();
     }
 
     /**
@@ -61,11 +61,11 @@ class User
     }
 
     /**
-     * @return MailAddress
+     * @return string|null
      */
-    public function getMailAddress(): MailAddress
+    public function getMailAddress(): ?string
     {
-        return $this->mailAddress;
+        return $this->mailAddress->getMailAddress();
     }
 
 
