@@ -6,11 +6,12 @@ use Illuminate\Support\Str;
 
 class Uuid
 {
+    private string $uuid;
+
     /**
-     * @param string $uuid
      * @param string|null $value
      */
-    public function __construct(private string $uuid, string | null $value = null)
+    public function __construct(string | null $value = null)
     {
         if (is_null($value)) {
             $this->uuid = (string) Str::orderedUuid();

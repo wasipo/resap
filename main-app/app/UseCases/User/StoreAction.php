@@ -22,18 +22,19 @@ class StoreAction
     {
 
         $user = new User(
-            new UserId(),
+            new UserId(null),
             new LoginId($loginActionValue->getLoginId()),
             $loginActionValue->getPassword(),
             $loginActionValue->getRealFamilyName(),
             $loginActionValue->getRealName(),
-            new MailAddress($loginActionValue->getEmailAddress()));
+            new MailAddress($loginActionValue->getMailAddress()));
 
-        $userUpdateOrCreate = $this->userRepository->save($user);
+        $save = $this->userRepository->save($user);
+        $model = $this->userRepository->findById($user->getId());
 
         return [
-            $userUpdateOrCreate,
+            'save' => $save? 'save' : 'create',
+            $model,
         ];
     }
-
 }

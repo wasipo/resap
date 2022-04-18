@@ -18,10 +18,10 @@ class UserId
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getUserID(): Uuid
+    public function getUserID(): string
     {
-        return $this->userID;
+        return $this->userID->getUuid();
     }
 }

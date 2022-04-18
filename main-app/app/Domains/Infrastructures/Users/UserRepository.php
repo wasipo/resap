@@ -2,7 +2,10 @@
 
 namespace App\Domains\Infrastructures\Users;
 
-use Illuminate\Support\Facades\DB;
+use App\Domains\Auths\LoginId;
+use App\Domains\Shared\MailAddress;
+use App\Domains\Users\UserId;
+use App\Exceptions\RepositoryException;
 use App\Domains\Users\User;
 use App\Domains\Users\UserRepositoryInterface;
 use App\Models\User as UserModel;
@@ -10,29 +13,34 @@ use App\Models\User as UserModel;
 class UserRepository implements UserRepositoryInterface
 {
 
-    public function save(User $user): User
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function save(User $user): bool
     {
-        $userModel = UserModel::updateOrCreate(
+
+        $updateOrCreate = UserModel::updateOrCreate(
             [
-                $user->getId()
+                'id' => $user->getId()
             ]
             ,
             [
-                $user->getLoginId(),
-                $user->getPassword(),
-                $user->getRealFamilyName(),
-                $user->getRealName(),
-                $user->getMailAddress()
+                'id' => $user->getId(),
+                'login_id' => $user->getLoginId(),
+                'password' => $user->getPassword(),
+                'real_family_name' => $user->getRealFamilyName(),
+                'real_name' => $user->getRealName(),
+                'mail_address' => $user->getMailAddress()
             ]
         );
 
-        return new User(
-            $userModel->id,
-            $userModel->login_id,
-            $userModel->password,
-            $userModel->real_family_name,
-            $userModel->real_name,
-            $userModel->mail_address
-        );
+        return $updateOrCreate->wasRecentlyCreated;
+
+    }
+
+    public function findById(string $id): User
+    {
+        // TODO: Implement findById() method.
     }
 }

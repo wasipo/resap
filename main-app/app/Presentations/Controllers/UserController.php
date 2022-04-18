@@ -9,7 +9,7 @@ use App\UseCases\User\StoreAction;
 class UserController extends Controller
 {
 
-    public function createUser(UserActionValueRequest $request,  StoreAction $action)
+    public function createUser(UserActionValueRequest $request,  StoreAction $action): array
     {
         return (array)$action($request);
     }

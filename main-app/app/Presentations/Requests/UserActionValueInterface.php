@@ -12,6 +12,6 @@ interface UserActionValueInterface
 
     public function getRealName(): string|null;
 
-    public function getEmailAddress(): string|null;
+    public function getMailAddress(): string|null;
 
 }

@@ -5,6 +5,7 @@ namespace App\Domains\Users;
 interface UserRepositoryInterface
 {
 
-    public function save(User $user);
+    public function findById(string $id): User;
 
+    public function save(User $user): bool;
 }
