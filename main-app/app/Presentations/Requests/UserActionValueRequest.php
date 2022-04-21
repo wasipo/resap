@@ -21,6 +21,11 @@ class UserActionValueRequest extends BaseRequest implements UserActionValueInter
                 'unique:users,login_id',
                 'max:255'
             ],
+            'type' => [
+                'required',
+                'string',
+                'max:15'
+            ],
             'emailAddress' => [
                 'nullable',
                 'email',

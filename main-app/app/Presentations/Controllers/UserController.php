@@ -14,4 +14,14 @@ class UserController extends Controller
         return (array)$action($request);
     }
 
+    public function createOwner(UserActionValueRequest $request,  StoreAction $action): array
+    {
+        return (array)$action($request);
+    }
+
+    public function createAdmin(UserActionValueRequest $request,  StoreAction $action): array
+    {
+        return (array)$action($request);
+    }
+
 }
